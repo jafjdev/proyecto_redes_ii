@@ -2,8 +2,6 @@ package Paquete;
 
 import java.io.Serializable;
 
-import Client.Strategy;
-
 public abstract class AbstractPackage implements Serializable {
     protected int _code;
     protected Strategy strategy;
@@ -27,7 +25,7 @@ public abstract class AbstractPackage implements Serializable {
     public void set_code(int _code) {
         this._code = _code;
     }
-    
+
     public AbstractPackage(Strategy strategy) {
     	this.strategy = strategy;
     }
