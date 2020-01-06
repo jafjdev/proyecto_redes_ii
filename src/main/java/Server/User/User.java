@@ -8,24 +8,27 @@ public class User {
     private String _lastName;
     private String _user;
     private String _password;
+    private int _capacity;
 
     public User() {
     }
 
-    public User(UUID _uuid, String _name, String _lastName, String _user, String _password) {
-        this._uuid = _uuid;
-        this._name = _name;
-        this._lastName = _lastName;
-        this._user = _user;
-        this._password = _password;
+    public User(UUID uuid, String name, String lastName, String user, String password, int capacity) {
+        this._uuid = uuid;
+        this._name = name;
+        this._lastName = lastName;
+        this._user = user;
+        this._password = password;
+        this._capacity = capacity;
     }
 
-    public User(String _name, String _lastName, String _user, String _password) {
+    public User(String name, String lastName, String user, String password, int capacity) {
         this._uuid = UUID.randomUUID();
-        this._name = _name;
-        this._lastName = _lastName;
-        this._user = _user;
-        this._password = _password;
+        this._name = name;
+        this._lastName = lastName;
+        this._user = user;
+        this._password = password;
+        this._capacity = capacity;
     }
 
     public String get_name() {

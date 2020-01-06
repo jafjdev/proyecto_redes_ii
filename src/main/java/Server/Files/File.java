@@ -4,6 +4,22 @@ public class File {
     private String _name;
     private String _url;
     private long _size;
+    private Byte[] _fileBytes;
+
+    public File(String _name, String _url, long _size, Byte[] _fileBytes) {
+        this._name = _name;
+        this._url = _url;
+        this._size = _size;
+        this._fileBytes = _fileBytes;
+    }
+
+    public Byte[] get_fileBytes() {
+        return _fileBytes;
+    }
+
+    public void set_fileBytes(Byte[] _fileBytes) {
+        this._fileBytes = _fileBytes;
+    }
 
     public String get_name() {
         return _name;
