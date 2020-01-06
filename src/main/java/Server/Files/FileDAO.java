@@ -24,7 +24,7 @@ public class FileDAO implements IFileManager {
         if (getByFolderName(name.toLowerCase()).isPresent())
             throw new FolderAlreadyExistException();
         else
-            this._folderList.add(new Folder("name", user.get_uuid()));
+            this._folderList.add(new Folder(name, user.get_uuid()));
     }
 
     public Optional<Folder> getByFolderName(String name) {
