@@ -8,6 +8,7 @@ import Server.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class FileDAO implements IFileManager {
     private Registry _registry;
@@ -19,10 +20,17 @@ public class FileDAO implements IFileManager {
     }
 
     @Override
-    public Folder createFolder(String name, User user) throws FolderAlreadyExistException {
-        return _folderList.stream().filter(folderX -> folderX.get_name().equals(name))
-                .findFirst()
-                .orElseThrow(FolderAlreadyExistException::new);
+    public void createFolder(String name, User user) throws FolderAlreadyExistException {
+        if (getByFolderName(name.toLowerCase()).isPresent())
+            throw new FolderAlreadyExistException();
+        else
+            this._folderList.add(new Folder("name", user.get_uuid()));
+    }
+
+    public Optional<Folder> getByFolderName(String name) {
+        return this._folderList.stream()
+                .filter(folder -> folder.get_name().equals(name))
+                .findFirst();
     }
 
     @Override

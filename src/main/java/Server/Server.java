@@ -7,7 +7,9 @@ import Server.Files.IFileManager;
 import Server.User.IUserManager;
 import Server.User.UserDAO;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -34,7 +36,7 @@ public class Server implements Runnable {
                 ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                 PackageToReceive _packageToReceive = (PackageToReceive) objectInputStream.readObject();
                 if (_packageToReceive.get_code() == 0)
-                    fileManager.createFolder(_packageToReceive.get_folder(), _packageToReceive.get_user());
+                    fileManager.createFolder(_packageToReceive.get_folder().get_name(), _packageToReceive.get_user());
 
                 //////////////////////////////////////////////////////////////////
                 /////                   OUTPUT                              /////

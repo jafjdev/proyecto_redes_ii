@@ -7,7 +7,7 @@ import Server.User.User;
 
 
 public interface IFileManager {
-    Folder createFolder(String folder, User user) throws FolderAlreadyExistException;
+    void createFolder(String folder, User user) throws FolderAlreadyExistException;
 
     void deleteFolder(String name) throws FolderDoesntExistException;
 
