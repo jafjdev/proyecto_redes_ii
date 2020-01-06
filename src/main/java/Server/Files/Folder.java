@@ -45,4 +45,13 @@ public class Folder {
     public void set_userUUID(UUID _userUUID) {
         this._userUUID = _userUUID;
     }
+
+    @Override
+    public String toString() {
+        return "Folder{" +
+                "_name='" + _name + '\'' +
+                ", _file=" + _file +
+                ", _userUUID=" + _userUUID +
+                '}';
+    }
 }

@@ -3,7 +3,7 @@ package Paquete.Strategy;
 import Server.Files.FileDAO;
 import Server.User.User;
 
-public class StrategyDeleteFolder implements Strategy {
+public class StrategyDeleteFolder extends Strategy {
     private FileDAO _fileDao;
     private User _user;
     private String _folderName;
@@ -11,7 +11,7 @@ public class StrategyDeleteFolder implements Strategy {
     public StrategyDeleteFolder(String _folderName, User _user) {
         this._folderName = _folderName;
         this._user = _user;
-        this._fileDao = new FileDAO();
+        this._fileDao = FileDAO.getInstance();
     }
 
     @Override

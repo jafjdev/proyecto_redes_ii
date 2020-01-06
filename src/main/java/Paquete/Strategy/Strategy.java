@@ -1,6 +1,14 @@
 package Paquete.Strategy;
 
+import Server.Files.FileDAO;
+
 import java.io.Serializable;
-public interface Strategy extends Serializable {
-    void execute() throws Exception;
+public abstract class Strategy implements Serializable {
+    protected FileDAO fileDAO;
+
+    public void setFileDAO(FileDAO fileDAO) {
+        this.fileDAO = fileDAO;
+    }
+
+    public abstract void execute() throws Exception;
 }

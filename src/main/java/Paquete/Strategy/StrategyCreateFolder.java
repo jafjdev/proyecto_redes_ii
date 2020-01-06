@@ -1,22 +1,19 @@
 package Paquete.Strategy;
 
-import Server.Exceptions.FolderAlreadyExistException;
-import Server.Files.FileDAO;
 import Server.User.User;
 
-public class StrategyCreateFolder implements Strategy {
+public class StrategyCreateFolder extends Strategy {
     private String _name;
     private User _user;
-    private FileDAO _fileDao;
 
     public StrategyCreateFolder(String name, User user) {
         this._name = name;
         this._user = user;
-        this._fileDao = FileDAO.getInstance();
     }
 
     @Override
-    public void execute() throws FolderAlreadyExistException {
-        this._fileDao.createFolder(_name, this._user);
+    public void execute() throws Exception {
+        this.fileDAO.createFolder(_name, this._user);
+
     }
 }

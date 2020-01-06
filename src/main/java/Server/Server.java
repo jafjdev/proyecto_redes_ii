@@ -31,14 +31,15 @@ public class Server implements Runnable {
                 Socket socket = serverSocket.accept();
                 fileManager = FileDAO.getInstance();
                 //////////////////////////////////////////////////////////////////
-                /////                   INPUT                              /////
+                /////                          INPUT                         /////
                 //////////////////////////////////////////////////////////////////
                 ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                 AbstractPackage _packageToReceive = (PackageToSend) objectInputStream.readObject();
+                _packageToReceive.getStrategy().setFileDAO(fileManager);
                 _packageToReceive.getStrategy().execute();
-                System.out.println(this.fileManager.get_folderList().toString());
+                System.out.println(FileDAO.getInstance().get_folderList().toString());
                 //////////////////////////////////////////////////////////////////
-                /////                   OUTPUT                              /////
+                /////                         OUTPUT                        /////
                 //////////////////////////////////////////////////////////////////
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 

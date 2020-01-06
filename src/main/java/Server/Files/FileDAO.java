@@ -29,10 +29,14 @@ public class FileDAO implements IFileManager, Serializable {
 
     @Override
     public void createFolder(String name, User user) throws FolderAlreadyExistException {
-        if (getByFolderName(name.toLowerCase()).isPresent())
-            throw new FolderAlreadyExistException();
-        else
-            this._folderList.add(new Folder(name, user.get_uuid()));
+        //if (getByFolderName(name.toLowerCase()).isPresent())
+        //  throw new FolderAlreadyExistException();
+        //else {
+        this._folderList.add(new Folder(name, user.get_uuid()));
+        System.out.println(name);
+        System.out.println(user.toString());
+        System.out.println(this._folderList.toString());
+        //}
     }
 
     public Optional<Folder> getByFolderName(String name) {

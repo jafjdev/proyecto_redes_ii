@@ -95,4 +95,17 @@ public class User implements Serializable {
     public void set_folderList(List<Folder> _folderList) {
         this._folderList = _folderList;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "_uuid=" + _uuid +
+                ", _name='" + _name + '\'' +
+                ", _lastName='" + _lastName + '\'' +
+                ", _user='" + _user + '\'' +
+                ", _password='" + _password + '\'' +
+                ", _capacity=" + _capacity +
+                ", _folderList=" + _folderList +
+                '}';
+    }
 }
