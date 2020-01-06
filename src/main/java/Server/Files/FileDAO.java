@@ -6,7 +6,6 @@ import Server.Exceptions.FolderAlreadyExistException;
 import Server.Exceptions.FolderDoesntExistException;
 import Server.User.User;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +19,8 @@ public class FileDAO implements IFileManager {
     }
 
     @Override
-    public Folder createFolder(Folder folder, User user) throws FolderAlreadyExistException {
-        return _folderList.stream().filter(folderX -> folderX.get_name().equals(folder.get_name()))
+    public Folder createFolder(String name, User user) throws FolderAlreadyExistException {
+        return _folderList.stream().filter(folderX -> folderX.get_name().equals(name))
                 .findFirst()
                 .orElseThrow(FolderAlreadyExistException::new);
     }

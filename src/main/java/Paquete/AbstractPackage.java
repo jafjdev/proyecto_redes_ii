@@ -1,9 +1,13 @@
 package Paquete;
 
+import Paquete.Strategy.Strategy;
+import Server.User.User;
+
 import java.io.Serializable;
 
 public abstract class AbstractPackage implements Serializable {
     protected int _code;
+    protected User user;
     protected Strategy strategy;
 
     public Strategy getStrategy() {
