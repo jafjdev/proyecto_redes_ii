@@ -4,21 +4,26 @@ import Server.Config.Registry;
 import Server.Exceptions.FileDoesntExistException;
 import Server.Exceptions.FolderAlreadyExistException;
 import Server.Exceptions.FolderDoesntExistException;
+import Server.User.User;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileDAO implements IFileManager {
     private Registry _registry;
+    private List<Folder> _folderList;
 
     public FileDAO() {
         this._registry = Registry.getInstance();
+        this._folderList = new ArrayList<>();
     }
 
     @Override
-    public void createFolder(String name) throws FolderAlreadyExistException {
-        if (!new File(this._registry.FOLDER + name).mkdir())
-            throw new FolderAlreadyExistException("Esta carpeta  ya existe");
-
+    public Folder createFolder(Folder folder, User user) throws FolderAlreadyExistException {
+        return _folderList.stream().filter(folderX -> folderX.get_name().equals(folder.get_name()))
+                .findFirst()
+                .orElseThrow(FolderAlreadyExistException::new);
     }
 
     @Override

@@ -34,7 +34,7 @@ public class Server implements Runnable {
                 ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                 PackageToReceive _packageToReceive = (PackageToReceive) objectInputStream.readObject();
                 if (_packageToReceive.get_code() == 0)
-                    fileManager.createFolder(_packageToReceive.get_folderName());
+                    fileManager.createFolder(_packageToReceive.get_folder(), _packageToReceive.get_user());
 
                 //////////////////////////////////////////////////////////////////
                 /////                   OUTPUT                              /////
