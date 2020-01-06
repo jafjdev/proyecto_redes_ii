@@ -2,11 +2,12 @@ package Server.User;
 
 import Server.Files.Folder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class User {
+public class User implements Serializable {
     private UUID _uuid;
     private String _name;
     private String _lastName;

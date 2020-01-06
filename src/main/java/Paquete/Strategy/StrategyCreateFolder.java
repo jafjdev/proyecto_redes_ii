@@ -12,7 +12,7 @@ public class StrategyCreateFolder implements Strategy {
     public StrategyCreateFolder(String name, User user) {
         this._name = name;
         this._user = user;
-        this._fileDao = new FileDAO();
+        this._fileDao = FileDAO.getInstance();
     }
 
     @Override

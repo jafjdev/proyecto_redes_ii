@@ -1,5 +1,6 @@
 package Paquete.Strategy;
 
-public interface Strategy {
+import java.io.Serializable;
+public interface Strategy extends Serializable {
     void execute() throws Exception;
 }

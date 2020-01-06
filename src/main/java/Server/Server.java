@@ -1,9 +1,9 @@
 package Server;
 
-import Paquete.PackageToReceive;
+import Paquete.AbstractPackage;
+import Paquete.PackageToSend;
 import Server.Exceptions.FolderAlreadyExistException;
 import Server.Files.FileDAO;
-import Server.Files.IFileManager;
 import Server.User.IUserManager;
 import Server.User.UserDAO;
 
@@ -15,13 +15,12 @@ import java.net.Socket;
 
 public class Server implements Runnable {
     IUserManager userManager;
-    IFileManager fileManager;
+    FileDAO fileManager;
 
     public Server() {
         Thread thread = new Thread(this);
         thread.start();
         userManager = new UserDAO();
-        fileManager = new FileDAO();
     }
 
     @Override
@@ -30,12 +29,14 @@ public class Server implements Runnable {
             ServerSocket serverSocket = new ServerSocket(9999);
             while (true) {
                 Socket socket = serverSocket.accept();
+                fileManager = FileDAO.getInstance();
                 //////////////////////////////////////////////////////////////////
                 /////                   INPUT                              /////
                 //////////////////////////////////////////////////////////////////
                 ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-                PackageToReceive _packageToReceive = (PackageToReceive) objectInputStream.readObject();
+                AbstractPackage _packageToReceive = (PackageToSend) objectInputStream.readObject();
                 _packageToReceive.getStrategy().execute();
+                System.out.println(this.fileManager.get_folderList().toString());
                 //////////////////////////////////////////////////////////////////
                 /////                   OUTPUT                              /////
                 //////////////////////////////////////////////////////////////////
@@ -46,7 +47,7 @@ public class Server implements Runnable {
         } catch (IOException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (FolderAlreadyExistException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } catch (Exception e) {
             System.out.println(e);
         }

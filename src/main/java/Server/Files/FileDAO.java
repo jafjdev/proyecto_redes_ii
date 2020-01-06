@@ -6,13 +6,21 @@ import Server.Exceptions.FolderAlreadyExistException;
 import Server.Exceptions.FolderDoesntExistException;
 import Server.User.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class FileDAO implements IFileManager {
+public class FileDAO implements IFileManager, Serializable {
     private Registry _registry;
     private List<Folder> _folderList;
+    private static FileDAO _fileDAO;
+
+    public static FileDAO getInstance() {
+        if (_fileDAO == null)
+            return new FileDAO();
+        return _fileDAO;
+    }
 
     public FileDAO() {
         this._registry = Registry.getInstance();
@@ -51,5 +59,17 @@ public class FileDAO implements IFileManager {
     @Override
     public void downloadFile(String url) {
 
+    }
+
+    public List<Folder> get_folderList() {
+        return _folderList;
+    }
+
+    @Override
+    public String toString() {
+        return "FileDAO{" +
+                "_registry=" + _registry +
+                ", _folderList=" + _folderList +
+                '}';
     }
 }
