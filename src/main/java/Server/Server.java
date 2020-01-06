@@ -35,9 +35,7 @@ public class Server implements Runnable {
                 //////////////////////////////////////////////////////////////////
                 ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                 PackageToReceive _packageToReceive = (PackageToReceive) objectInputStream.readObject();
-                if (_packageToReceive.get_code() == 0)
-                    fileManager.createFolder(_packageToReceive.get_folder().get_name(), _packageToReceive.get_user());
-
+                _packageToReceive.getStrategy().execute();
                 //////////////////////////////////////////////////////////////////
                 /////                   OUTPUT                              /////
                 //////////////////////////////////////////////////////////////////
@@ -49,6 +47,8 @@ public class Server implements Runnable {
             System.out.println(e.getMessage());
         } catch (FolderAlreadyExistException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e);
         }
 
     }
