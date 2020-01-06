@@ -3,10 +3,11 @@ package Server.Files;
 import Server.Exceptions.FileDoesntExistException;
 import Server.Exceptions.FolderAlreadyExistException;
 import Server.Exceptions.FolderDoesntExistException;
+import Server.User.User;
 
 
 public interface IFileManager {
-    void createFolder(String name) throws FolderAlreadyExistException;
+    Folder createFolder(Folder folder, User user) throws FolderAlreadyExistException;
 
     void deleteFolder(String name) throws FolderDoesntExistException;
 

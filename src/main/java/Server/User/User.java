@@ -1,5 +1,9 @@
 package Server.User;
 
+import Server.Files.Folder;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class User {
@@ -9,8 +13,10 @@ public class User {
     private String _user;
     private String _password;
     private int _capacity;
+    private List<Folder> _folderList;
 
     public User() {
+        this._folderList = new ArrayList<>();
     }
 
     public User(UUID uuid, String name, String lastName, String user, String password, int capacity) {
@@ -20,6 +26,7 @@ public class User {
         this._user = user;
         this._password = password;
         this._capacity = capacity;
+        this._folderList = new ArrayList<>();
     }
 
     public User(String name, String lastName, String user, String password, int capacity) {
@@ -29,6 +36,7 @@ public class User {
         this._user = user;
         this._password = password;
         this._capacity = capacity;
+        this._folderList = new ArrayList<>();
     }
 
     public String get_name() {
@@ -69,5 +77,21 @@ public class User {
 
     public void set_uuid(UUID _uuid) {
         this._uuid = _uuid;
+    }
+
+    public int get_capacity() {
+        return _capacity;
+    }
+
+    public void set_capacity(int _capacity) {
+        this._capacity = _capacity;
+    }
+
+    public List<Folder> get_folderList() {
+        return _folderList;
+    }
+
+    public void set_folderList(List<Folder> _folderList) {
+        this._folderList = _folderList;
     }
 }
