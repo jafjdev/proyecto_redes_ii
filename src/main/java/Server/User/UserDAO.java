@@ -17,7 +17,7 @@ public class UserDAO implements IUserManager {
     @Override
     public void createUser(User user) throws UserAlreadyExistException {
         if (getByUsername(user.get_user()).isPresent())
-            throw new UserAlreadyExistException("Server.User.Server.User Already Exist");
+            throw new UserAlreadyExistException("User Already Exist");
         else
             userList.add(user);
     }
@@ -28,7 +28,7 @@ public class UserDAO implements IUserManager {
         if (person.isPresent()) {
             userList.remove(person.get());
         } else
-            throw new UserDoesntExistException("Server.User.Server.User doesn't exist");
+            throw new UserDoesntExistException("User doesn't exist");
     }
 
 
